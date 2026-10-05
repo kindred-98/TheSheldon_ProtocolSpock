@@ -6,6 +6,8 @@ Maneja toda la entrada de usuario y la generación aleatoria para la IA.
 import random
 from src.config import OPCIONES, EMOJIS, MIN_RONDAS, MAX_RONDAS
 
+MSG_ENTRADA_INVALIDA = "❌ Entrada inválida. Debes introducir un número."
+
 
 def obtener_eleccion_jugador() -> str:
     """Muestra el menú y devuelve la elección del jugador como string.
@@ -27,7 +29,7 @@ def obtener_eleccion_jugador() -> str:
                 return OPCIONES[eleccion]
             print("❌ Opción no válida. Introduce un número del 1 al 5.")
         except ValueError:
-            print("❌ Entrada inválida. Debes introducir un número.")
+            print(MSG_ENTRADA_INVALIDA)
 
 
 def obtener_eleccion_computadora() -> str:
@@ -54,7 +56,7 @@ def pedir_numero_rondas() -> int:
                 return rondas
             print(f"❌ Introduce un número entre {MIN_RONDAS} y {MAX_RONDAS}.")
         except ValueError:
-            print("❌ Entrada inválida. Debes introducir un número.")
+            print(MSG_ENTRADA_INVALIDA)
 
 
 def pedir_opcion_menu(opciones_validas: list) -> int:
@@ -74,4 +76,4 @@ def pedir_opcion_menu(opciones_validas: list) -> int:
                 return opcion
             print(f"❌ Opción no válida. Elige entre {opciones_validas}.")
         except ValueError:
-            print("❌ Entrada inválida. Debes introducir un número.")
+            print(MSG_ENTRADA_INVALIDA)

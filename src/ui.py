@@ -7,6 +7,9 @@ Solo recibe datos y los muestra por pantalla.
 import os
 from src.config import EMOJIS
 
+BORDE_SUPERIOR = "╔══════════════════════════════════════════════╗"
+BORDE_INFERIOR = "╚══════════════════════════════════════════════╝"
+
 
 def limpiar_pantalla() -> None:
     """Limpia la terminal de forma compatible con Windows y Linux/Mac."""
@@ -16,9 +19,9 @@ def limpiar_pantalla() -> None:
 def mostrar_bienvenida() -> None:
     """Muestra la pantalla de bienvenida con título y reglas."""
     limpiar_pantalla()
-    print("╔══════════════════════════════════════════════╗")
+    print(BORDE_SUPERIOR)
     print("║  🪨 📄 ✂️  🦎 🖖 THE SHELDON PROTOCOL SPOCK ║")
-    print("╚══════════════════════════════════════════════╝")
+    print(BORDE_INFERIOR)
     print()
     print("📋 REGLAS:")
     print("  • Tijera  corta Papel    | Tijera  decapita Lagarto")
@@ -31,9 +34,9 @@ def mostrar_bienvenida() -> None:
 
 def mostrar_menu_principal() -> None:
     """Muestra el menú principal de opciones."""
-    print("╔══════════════════════════════════════════════╗")
+    print(BORDE_SUPERIOR)
     print("║  🪨 📄 ✂️  🦎 🖖 THE SHELDON PROTOCOL SPOCK ║")
-    print("╚══════════════════════════════════════════════╝")
+    print(BORDE_INFERIOR)
     print()
     print("  1. 🎮 Jugar partida")
     print("  2. 📊 Ver historial de partidas")
@@ -72,9 +75,9 @@ def mostrar_resumen(victorias: int, empates: int, derrotas: int, total: int) -> 
     """Muestra el resumen completo al final de la partida."""
     porcentaje = (victorias / total) * 100
 
-    print("\n╔══════════════════════════════════════════════╗")
+    print(f"\n{BORDE_SUPERIOR}")
     print("║              📊 RESUMEN FINAL                ║")
-    print("╚══════════════════════════════════════════════╝")
+    print(BORDE_INFERIOR)
     print(f"\n  Victorias : {victorias}")
     print(f"  Empates   : {empates}")
     print(f"  Derrotas  : {derrotas}")
@@ -92,9 +95,9 @@ def mostrar_resumen(victorias: int, empates: int, derrotas: int, total: int) -> 
 
 def mostrar_historial(historial: list) -> None:
     """Muestra el historial de partidas jugadas en la sesión."""
-    print("\n╔══════════════════════════════════════════════╗")
+    print(f"\n{BORDE_SUPERIOR}")
     print("║           📋 HISTORIAL DE PARTIDAS           ║")
-    print("╚══════════════════════════════════════════════╝\n")
+    print(f"{BORDE_INFERIOR}\n")
 
     if not historial:
         print("  Todavía no has jugado ninguna partida.\n")
@@ -102,7 +105,12 @@ def mostrar_historial(historial: list) -> None:
 
     for i, partida in enumerate(historial, 1):
         resultado = partida["resultado_final"]
-        emoji = "🏆" if resultado == "victoria" else "💻" if resultado == "derrota" else "🤝"
+        if resultado == "victoria":
+            emoji = "🏆"
+        elif resultado == "derrota":
+            emoji = "💻"
+        else:
+            emoji = "🤝"
         print(
             f"  Partida {i:>2} | {partida['fecha_hora']} | "
             f"Rondas: {partida['total_rondas']:>2} | "

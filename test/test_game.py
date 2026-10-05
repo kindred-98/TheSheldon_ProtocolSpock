@@ -41,7 +41,7 @@ class TestVictorias:
         assert motivo_esperado in mensaje
 
     def test_victoria_formato_mensaje(self):
-        resultado, mensaje = determinar_ganador("Piedra", "Tijera")
+        _, mensaje = determinar_ganador("Piedra", "Tijera")
         assert "Piedra" in mensaje
         assert "Tijera" in mensaje
 

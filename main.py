@@ -32,7 +32,7 @@ def main() -> None:
             stats = history.obtener_estadisticas(historial)
 
             if stats["partidas_jugadas"] > 0:
-                print(f"  📈 Estadísticas de la sesión:")
+                print("  📈 Estadísticas de la sesión:")
                 print(f"     Partidas jugadas : {stats['partidas_jugadas']}")
                 print(f"     Victorias totales: {stats['victorias_totales']}")
                 print(f"     Derrotas totales : {stats['derrotas_totales']}")

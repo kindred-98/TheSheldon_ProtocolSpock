@@ -38,7 +38,7 @@ class TestCrearHistorial:
 
 class TestGuardarPartida:
 
-    def test_añade_una_partida(self, historial_vacio):
+    def test_anade_una_partida(self, historial_vacio):
         guardar_partida(historial_vacio, 3, 0, 2, 5)
         assert len(historial_vacio) == 1
 
@@ -90,7 +90,7 @@ class TestObtenerEstadisticas:
         stats = obtener_estadisticas(historial_vacio)
         assert stats["partidas_jugadas"]    == 0
         assert stats["victorias_totales"]   == 0
-        assert stats["porcentaje_victorias"] == 0.0
+        assert stats["porcentaje_victorias"] == pytest.approx(0.0)
 
     def test_partidas_jugadas(self, historial_con_partidas):
         stats = obtener_estadisticas(historial_con_partidas)
@@ -111,4 +111,4 @@ class TestObtenerEstadisticas:
     def test_porcentaje_victorias(self, historial_con_partidas):
         stats = obtener_estadisticas(historial_con_partidas)
         # 6 victorias de 16 rondas totales = 37.5%
-        assert stats["porcentaje_victorias"] == 37.5
+        assert stats["porcentaje_victorias"] == pytest.approx(37.5)
